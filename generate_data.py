@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from shutil import rmtree, copyfile
 import pickle
 import math
+from PIL import Image
 
 
 def get_name_by_list(names, separate='_'):
@@ -63,7 +64,9 @@ for meeting_people_nun in all_meeting:
         if random.random() > wifi_err_rate:
             output_people.append(peo)
         for pic in pic_dirs:
-            copyfile(join(data_dir, peo, pic), join(data_folder_name, folder_name, 'mtcnn', '%s_%d_1.jpeg'%(sub_meeting_name, iou_id)))
+            img = Image.open(join(data_dir, peo, pic))
+            img = img.resize((160, 160), Image.ANTIALIAS)
+            img.save(join(data_folder_name, folder_name, 'mtcnn', '%s_%d_1.jpeg'%(sub_meeting_name, iou_id)))
             true_label['%s_%d_1.jpeg'%(sub_meeting_name, iou_id)] = peo
             iou_id += 1
     print('%s: %s'%(folder_name, get_name_by_list(meeting_people)))
