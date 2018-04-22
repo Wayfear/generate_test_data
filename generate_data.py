@@ -19,8 +19,8 @@ data_dir = 'PIE'
 all_peoples = os.listdir(data_dir)
 
 peoples_num = 20
-wifi_err_rate = 0.1
-video_err_rate = 0.1
+wifi_err_rate = 0
+video_err_rate = 0
 worse_rate = 0.3
 min_pic = 5
 max_pic = 32
@@ -34,6 +34,7 @@ meeting7_num = 5
 meeting8_num = 5
 meeting9_num = 5
 
+random.seed(10)
 
 selected_people = random.sample(all_peoples, peoples_num)
 
